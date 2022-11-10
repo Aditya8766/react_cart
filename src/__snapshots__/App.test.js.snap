@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders learn react link 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <div
+      class="header"
+    >
+      <h1>
+        Products
+      </h1>
+    </div>
+    <div
+      class="Main-block"
+    />
+    <div
+      class="pagination"
+    />
+    <div
+      class="cart"
+    >
+      <div
+        class="total-cart-val"
+      >
+        <h3>
+          Grand Total
+        </h3>
+        0
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,8 @@
+.cart{
+    display: flex;
+    flex-wrap: wrap;
+}
+.container h5{
+    margin-left: 20%;
+}
+

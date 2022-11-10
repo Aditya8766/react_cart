@@ -1,0 +1,22 @@
+.container .product__btn{
+    width: 58px;
+    height: 25px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    border-color: #eee; 
+    margin-right: 20px;
+}
+.container .product__btn2{
+    width: 65px;
+    height: 25px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    border-color: #eee; 
+    margin-left: 20px;
+}
