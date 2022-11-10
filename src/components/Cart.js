@@ -27,7 +27,7 @@ function Cart(props) {
           <>
             <div className="container">
               <h5>{`products:${Data.title}`}</h5>
-              <h5>{`quantity:${Data.quantity}`}</h5>
+              <h6>{`quantity:${Data.quantity}`}</h6>
               <h5>{`Price:${Data.price}`}</h5>
               <button
               name="remove from cart"

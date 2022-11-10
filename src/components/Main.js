@@ -17,7 +17,7 @@ function Main(props) {
               onClick={() => {
                 props.handleAddToCart(Data);
               }}
-            > add</button>
+            >add</button>
             
           </div>
         );
