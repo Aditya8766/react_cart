@@ -5,6 +5,7 @@ import Main from "./components/Main";
 import Cart from "./components/Cart";
 import products from "./mockdata/Products";
 import Pagination from "./components/pagination";
+import Search from "./components/Search";
 
 //  function getcall(){
 //   let url="https://dummyjson.com/products";
@@ -14,7 +15,9 @@ function App() {
   const [productData, setproductData] = useState([]);
   const [cartProducts, setcartProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
+  const [postPerPage] = useState(3);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   function getProducts() {
     return new Promise((resolve) => {
@@ -24,11 +27,26 @@ function App() {
   function processData(Promise) {
     Promise.then((data) => {
       setproductData(data.products);
+      setFilteredData(data.products);
     }).catch(Error);
   }
-  useEffect(() => {
+  useEffect(()=>{
     processData(getProducts());
-  }, []);
+  },[]);
+  useEffect(
+    () => {
+      const filter = productData.filter(val => val.title.toLowerCase().includes(searchText));
+      console.log("filter",filter);
+      setFilteredData([...filter]);
+    },
+    [searchText]
+  );
+
+  const handleSearch = (event) => {
+    let value = event.target.value.toLowerCase();
+    console.log("value",value);
+    setSearchText(value);
+  };
 
   const handleAddToCart = (product) => {
     const matched = cartProducts.find(
@@ -53,25 +71,23 @@ function App() {
 
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage;
-  const currentPost = productData?.slice(firstPostIndex, lastPostIndex);
-
+  const currentPost = filteredData?.slice(firstPostIndex, lastPostIndex);
+  console.log("cuurnt",currentPost)
   return (
     <div className="App">
       <Header />
-      <Main
-        handleAddToCart={handleAddToCart}
-        
-        productData={currentPost}
+      <Search
+        searchText={searchText}
+        handleSearch={handleSearch}
       />
+      <Main handleAddToCart={handleAddToCart} filteredData={currentPost} />
       <Pagination
-        totalPosts={productData.length}
+        totalPosts={filteredData.length}
         postPerPage={postPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
-      <Cart cartProducts={cartProducts}
-       handleAddToCart1={handleAddToCart1} />
-     
+      <Cart cartProducts={cartProducts} handleAddToCart1={handleAddToCart1} />
     </div>
   );
 }
